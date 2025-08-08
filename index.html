@@ -1,135 +1,131 @@
-diff --git a/index.html b/index.html
-index e3185589b1380658a4cb228f2b2d8f90f3a4aeb6..30ce5c94634c7fbfca3ce9906107090cfd3ac824 100644
---- a/index.html
-+++ b/index.html
-@@ -1,10 +1,128 @@
- <!DOCTYPE html>
- <html lang="en">
- <head>
--    <meta charset="UTF-8">
--    <title>Yes</title>
-+  <meta charset="UTF-8">
-+  <title>Image Slideshow</title>
-+  <style>
-+    * {
-+      box-sizing: border-box;
-+    }
-+    body {
-+      font-family: Arial, sans-serif;
-+      margin: 0;
-+    }
-+    .slideshow-container {
-+      max-width: 600px;
-+      position: relative;
-+      margin: auto;
-+    }
-+    .slides {
-+      display: none;
-+    }
-+    .slide-image {
-+      width: 100%;
-+    }
-+    .prev, .next {
-+      cursor: pointer;
-+      position: absolute;
-+      top: 50%;
-+      width: auto;
-+      padding: 16px;
-+      margin-top: -22px;
-+      color: white;
-+      font-weight: bold;
-+      font-size: 18px;
-+      transition: 0.6s ease;
-+      border-radius: 0 3px 3px 0;
-+      user-select: none;
-+      background-color: rgba(0,0,0,0.4);
-+    }
-+    .next {
-+      right: 0;
-+      border-radius: 3px 0 0 3px;
-+    }
-+    .prev:hover, .next:hover {
-+      background-color: rgba(0,0,0,0.8);
-+    }
-+    .dots {
-+      text-align: center;
-+      padding: 15px;
-+    }
-+    .dot {
-+      cursor: pointer;
-+      height: 15px;
-+      width: 15px;
-+      margin: 0 2px;
-+      background-color: #bbb;
-+      border-radius: 50%;
-+      display: inline-block;
-+      transition: background-color 0.6s ease;
-+    }
-+    .active, .dot:hover {
-+      background-color: #717171;
-+    }
-+  </style>
- </head>
- <body>
--    <h1>yes</h1>
-+  <div class="slideshow-container">
-+    <div class="slides">
-+      <img class="slide-image" src="https://placekitten.com/600/300" alt="Kitten 1">
-+    </div>
-+    <div class="slides">
-+      <img class="slide-image" src="https://placekitten.com/601/300" alt="Kitten 2">
-+    </div>
-+    <div class="slides">
-+      <img class="slide-image" src="https://placekitten.com/602/300" alt="Kitten 3">
-+    </div>
-+    <a class="prev">&#10094;</a>
-+    <a class="next">&#10095;</a>
-+  </div>
-+  <div class="dots">
-+    <span class="dot"></span>
-+    <span class="dot"></span>
-+    <span class="dot"></span>
-+  </div>
-+  <script>
-+    let slideIndex = 0;
-+    const slides = document.getElementsByClassName("slides");
-+    const dots = document.getElementsByClassName("dot");
-+    const prev = document.querySelector(".prev");
-+    const next = document.querySelector(".next");
-+
-+    function showSlides(n) {
-+      if (n >= slides.length) slideIndex = 0;
-+      if (n < 0) slideIndex = slides.length - 1;
-+      for (let i = 0; i < slides.length; i++) {
-+        slides[i].style.display = "none";
-+      }
-+      for (let i = 0; i < dots.length; i++) {
-+        dots[i].className = dots[i].className.replace(" active", "");
-+      }
-+      slides[slideIndex].style.display = "block";
-+      dots[slideIndex].className += " active";
-+    }
-+
-+    function plusSlides(n) {
-+      showSlides(slideIndex += n);
-+    }
-+
-+    function currentSlide(n) {
-+      showSlides(slideIndex = n);
-+    }
-+
-+    prev.addEventListener("click", () => plusSlides(-1));
-+    next.addEventListener("click", () => plusSlides(1));
-+    Array.from(dots).forEach((dot, index) => {
-+      dot.addEventListener("click", () => currentSlide(index));
-+    });
-+
-+    function autoSlides() {
-+      plusSlides(1);
-+      setTimeout(autoSlides, 5000);
-+    }
-+
-+    showSlides(slideIndex);
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Image Slideshow</title>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+    }
+    .slideshow-container {
+      max-width: 600px;
+      position: relative;
+      margin: auto;
+    }
+    .slides {
+      display: none;
+    }
+    .slide-image {
+      width: 100%;
+    }
+    .prev, .next {
+      cursor: pointer;
+      position: absolute;
+      top: 50%;
+      width: auto;
+      padding: 16px;
+      margin-top: -22px;
+      color: white;
+      font-weight: bold;
+      font-size: 18px;
+      transition: 0.6s ease;
+      border-radius: 0 3px 3px 0;
+      user-select: none;
+      background-color: rgba(0,0,0,0.4);
+    }
+    .next {
+      right: 0;
+      border-radius: 3px 0 0 3px;
+    }
+    .prev:hover, .next:hover {
+      background-color: rgba(0,0,0,0.8);
+    }
+    .dots {
+      text-align: center;
+      padding: 15px;
+    }
+    .dot {
+      cursor: pointer;
+      height: 15px;
+      width: 15px;
+      margin: 0 2px;
+      background-color: #bbb;
+      border-radius: 50%;
+      display: inline-block;
+      transition: background-color 0.6s ease;
+    }
+    .active, .dot:hover {
+      background-color: #717171;
+    }
+  </style>
+</head>
+<body>
+  <div class="slideshow-container">
+    <div class="slides">
+      <img class="slide-image" src="https://placekitten.com/600/300" alt="Kitten 1">
+    </div>
+    <div class="slides">
+      <img class="slide-image" src="https://placekitten.com/601/300" alt="Kitten 2">
+    </div>
+    <div class="slides">
+      <img class="slide-image" src="https://placekitten.com/602/300" alt="Kitten 3">
+    </div>
+    <a class="prev">&#10094;</a>
+    <a class="next">&#10095;</a>
+  </div>
+  <div class="dots">
+    <span class="dot"></span>
+    <span class="dot"></span>
+    <span class="dot"></span>
+  </div>
+  <script>
+    let slideIndex = 0;
+    const slides = document.getElementsByClassName("slides");
+    const dots = document.getElementsByClassName("dot");
+    const prev = document.querySelector(".prev");
+    const next = document.querySelector(".next");
+
+    function showSlides(n) {
+      if (n >= slides.length) slideIndex = 0;
+      if (n < 0) slideIndex = slides.length - 1;
+      for (let i = 0; i < slides.length; i++) {
+        slides[i].style.display = "none";
+      }
+      for (let i = 0; i < dots.length; i++) {
+        dots[i].className = dots[i].className.replace(" active", "");
+      }
+      slides[slideIndex].style.display = "block";
+      dots[slideIndex].className += " active";
+    }
+
+    function plusSlides(n) {
+      showSlides(slideIndex += n);
+    }
+
+    function currentSlide(n) {
+      showSlides(slideIndex = n);
+    }
+
+    prev.addEventListener("click", () => plusSlides(-1));
+    next.addEventListener("click", () => plusSlides(1));
+    Array.from(dots).forEach((dot, index) => {
+      dot.addEventListener("click", () => currentSlide(index));
+    });
+
+    function autoSlides() {
+      plusSlides(1);
+      setTimeout(autoSlides, 5000);
+    }
+
+    showSlides(slideIndex);
+    setTimeout(autoSlides, 5000);
+  </script>
+</body>
+</html>
 +    setTimeout(autoSlides, 5000);
 +  </script>
  </body>
